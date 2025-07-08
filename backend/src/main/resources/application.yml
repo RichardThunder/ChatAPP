@@ -1,0 +1,38 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: ChatAPP
+
+langchain4j:
+  # Google AI Gemini 配置
+  google-ai-gemini:
+    chat-model:
+      api-key: ${GEMINI_API_KEY} # 确保 API Key 正确传递
+      model-name: gemini-2.0-flash # 要使用的 Gemini 模型名称
+      log-requests-and-responses: true
+      #model-name: gemini-1.5-pro # 要使用的 Gemini 模型名称
+      #temperature: 0.7 # 模型温度/创造性 (可选，默认通常是 0.7)
+      #top-k: 32 # 采样参数，用于控制输出多样性 (可选)
+      #top-p: 1.0 # 采样参数，用于控制输出多样性 (可选)
+      #max-output-tokens: 2048 # 最大输出 tokens 数量 (可选)
+      #timeout: 60s # 请求超时时间 (可选)
+
+
+
+#spring:
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/LangChain4j
+#    username: richard
+#    password: 12345678
+#    driver-class-name: org.postgresql.Driver
+
+# 日志配置 - 确保能看到监听器日志
+logging:
+  level:
+    richardthunder.chatapp: DEBUG
+    dev.langchain4j: INFO
+    org.springframework.context: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} %5p --- [%15.15t] %-40.40logger{39} : %m%n"
