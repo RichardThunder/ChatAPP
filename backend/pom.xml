@@ -12,24 +12,12 @@
 	<artifactId>ChatAPP</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ChatAPP</name>
-	<description>ChatAPP</description>
-	<url/>
-	<licenses>
-		<license/>
-	</licenses>
-	<developers>
-		<developer/>
-	</developers>
-	<scm>
-		<connection/>
-		<developerConnection/>
-		<tag/>
-		<url/>
-	</scm>
+	<description>ChatAPP Backend</description>
+	
 	<properties>
 		<java.version>17</java.version>
-
 	</properties>
+	
 	<dependencies>
 		<!-- Spring Boot Starters -->
 		<dependency>
@@ -49,6 +37,7 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -56,11 +45,16 @@
 		</dependency>
 
 		<!-- Database -->
-	<!--	<dependency>
+		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
-		</dependency>-->
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
 
 		<!-- Testing -->
 		<dependency>
@@ -69,28 +63,31 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- LangChain4j Dependencies -->
 		<dependency>
 			<groupId>dev.langchain4j</groupId>
 			<artifactId>langchain4j-google-ai-gemini</artifactId>
 			<version>1.1.0-rc1</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/dev.langchain4j/langchain4j-google-ai-gemini-spring-boot-starter -->
+		
 		<dependency>
 			<groupId>dev.langchain4j</groupId>
 			<artifactId>langchain4j-google-ai-gemini-spring-boot-starter</artifactId>
 			<version>1.1.0-beta7</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/dev.langchain4j/langchain4j-core -->
+		
 		<dependency>
 			<groupId>dev.langchain4j</groupId>
 			<artifactId>langchain4j-spring-boot-starter</artifactId>
 			<version>1.1.0-beta7</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>dev.langchain4j</groupId>
 			<artifactId>langchain4j-embeddings-all-minilm-l6-v2</artifactId>
 			<version>1.1.0-beta7</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>io.projectreactor</groupId>
 			<artifactId>reactor-core</artifactId>
@@ -113,6 +110,7 @@
 					</annotationProcessorPaths>
 				</configuration>
 			</plugin>
+			
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -124,71 +122,6 @@
 						</exclude>
 					</excludes>
 				</configuration>
-			</plugin>
-			<!-- Frontend Maven Plugin -->
-			<plugin>
-				<groupId>com.github.eirslett</groupId>
-				<artifactId>frontend-maven-plugin</artifactId>
-				<version>1.12.1</version>
-				<configuration>
-					<workingDirectory>src/main/frontend</workingDirectory>
-					<installDirectory>target</installDirectory>
-				</configuration>
-				<executions>
-					<!-- Install Node and NPM -->
-					<execution>
-						<id>install-node-and-npm</id>
-						<goals>
-							<goal>install-node-and-npm</goal>
-						</goals>
-						<configuration>
-							<nodeVersion>v18.16.0</nodeVersion>
-							<npmVersion>9.5.1</npmVersion>
-						</configuration>
-					</execution>
-					<!-- Install npm dependencies -->
-					<execution>
-						<id>npm-install</id>
-						<goals>
-							<goal>npm</goal>
-						</goals>
-						<configuration>
-							<arguments>install</arguments>
-						</configuration>
-					</execution>
-					<!-- Build frontend -->
-					<execution>
-						<id>npm-build</id>
-						<goals>
-							<goal>npm</goal>
-						</goals>
-						<configuration>
-							<arguments>run build</arguments>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<!-- Copy frontend build to target -->
-			<plugin>
-				<artifactId>maven-resources-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>copy-frontend-build</id>
-						<phase>process-resources</phase>
-						<goals>
-							<goal>copy-resources</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>${project.build.directory}/classes/static</outputDirectory>
-							<resources>
-								<resource>
-									<directory>src/main/frontend/build</directory>
-									<filtering>false</filtering>
-								</resource>
-							</resources>
-						</configuration>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 	</build>
