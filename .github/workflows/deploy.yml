@@ -147,7 +147,7 @@ jobs:
             docker system prune -af
             
             # 拉取最新镜像
-            echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+            echo ${{ secrets.REPOSITORY_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
             
             # 创建环境变量文件
             cat > .env << EOF
