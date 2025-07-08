@@ -1,0 +1,8 @@
+.idea
+.mvn
+./target/
+./build/
+./*/target/
+./*/node_modules/
+./*/package-lock.json
+

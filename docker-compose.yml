@@ -1,51 +1,28 @@
+version: '3.8'
 services:
   backend:
     build:
       context: ./backend
-      dockerfile: Dockerfile
+    image: chatapp-backend
+    container_name: chatapp-backend
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
     ports:
       - "8080:8080"
-    environment:
-#      - SPRING_PROFILES_ACTIVE=dev
-      - GEMINI_API_KEY=${GEMINI_API_KEY}
-    volumes:
-      - ./backend:/app
     networks:
-      - app-network
-    depends_on:
-      - postgres
-    restart: no
+      - chatapp-net
 
   frontend:
     build:
       context: ./frontend
-      dockerfile: Dockerfile
+    image: chatapp-frontend
+    container_name: chatapp-frontend
     ports:
-      - "3000:80"
+      - "80:80"
     depends_on:
       - backend
     networks:
-      - app-network
-    restart: no
-
-  postgres:
-    image: postgres:15-alpine
-    environment:
-      - POSTGRES_DB=chatapp
-      - POSTGRES_USER=chatapp
-      - POSTGRES_PASSWORD=chatapp123
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-      - ./backend/src/main/resources/db/init.sql:/docker-entrypoint-initdb.d/init.sql
-    ports:
-      - "5432:5432"
-    networks:
-      - app-network
-    restart: unless-stopped
-
+      - chatapp-net
 networks:
-  app-network:
+  chatapp-net:
     driver: bridge
-
-volumes:
-  postgres_data:
