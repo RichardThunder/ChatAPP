@@ -1,12 +1,12 @@
 package richardthunder.chatapp.controller;
 
 import dev.langchain4j.service.Result;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import richardthunder.chatapp.model.Assistant;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+
+@CrossOrigin(origins = "http://richardthunder.xyz")
 @RestController
 @RequestMapping("/api/v1/assistant")
 public class AssistantController {
