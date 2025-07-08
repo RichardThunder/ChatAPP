@@ -141,7 +141,7 @@ jobs:
             cd /opt/chatapp
             
             # 停止现有服务
-            docker-compose -f docker-compose.prod.yml down || true
+            docker-compose -f docker-compose.yml down || true
             
             # 清理旧镜像
             docker system prune -af
@@ -159,12 +159,12 @@ jobs:
             # 下载最新的 docker-compose 文件
             curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
                  -H "Accept: application/vnd.github.v3.raw" \
-                 -o docker-compose.prod.yml \
-                 https://api.github.com/repos/${{ github.repository }}/contents/docker-compose.prod.yml
+                 -o docker-compose.yml \
+                 https://api.github.com/repos/${{ github.repository }}/contents/docker-compose.yml
             
             # 启动服务
-            docker-compose -f docker-compose.prod.yml pull
-            docker-compose -f docker-compose.prod.yml up -d
+            docker-compose -f docker-compose.yml pull
+            docker-compose -f docker-compose.yml up -d
             
             # 等待服务启动
             sleep 30
