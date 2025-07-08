@@ -151,9 +151,9 @@ jobs:
             
             # 创建环境变量文件
             cat > .env << EOF
-            DOCKER_REGISTRY=ghcr.io/${{ github.repository }}
-            VERSION=latest
+            DOCKER_REGISTRY=ghcr.io/richardthunder/chatapp
             GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}
+            VERSION=latest
             EOF
             
             # 下载最新的 docker-compose 文件
@@ -175,4 +175,4 @@ jobs:
             
             # 清理
             docker logout ghcr.io
-
+            
