@@ -5,4 +5,6 @@
 ./*/target/
 ./*/node_modules/
 .env
-
+.mvn/*
+/frontend/node_modules/
+/target/
